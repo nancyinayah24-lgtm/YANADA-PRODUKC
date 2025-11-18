@@ -5,14 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pemesanan Pelayanan Kesehatan</title>
 
-    <link
-        rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-    />
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet" />
-    <link rel="stylesheet" href="style.css" />
-</head>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -20,6 +12,7 @@
             margin: 0;
             padding: 20px;
             display: flex;
+            flex-direction: column; /* Mengubah menjadi kolom untuk menampung footer */
             justify-content: center;
             align-items: center;
             min-height: 100vh;
@@ -32,6 +25,7 @@
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             width: 100%;
             max-width: 600px;
+            margin-bottom: 20px; /* Tambahkan sedikit ruang di bawah container utama */
         }
 
         h1 {
@@ -51,18 +45,19 @@
             color: #555;
         }
 
-        input[type="text"], input[type="email"], select {
+        input[type="text"], input[type="email"], input[type="date"], input[type="tel"], select {
             width: 100%;
             padding: 10px;
             border: 1px solid #ccc;
             border-radius: 4px;
-            box-sizing: border-box; /* Penting untuk padding agar tidak melebihi lebar */
+            box-sizing: border-box; /* Penting agar padding tidak melebihi lebar */
         }
 
         .service-list label {
             font-weight: normal;
             display: block;
             margin: 5px 0;
+            cursor: pointer; /* Menambahkan cursor pointer untuk elemen label yang dapat diklik */
         }
 
         .service-list input[type="checkbox"] {
@@ -79,37 +74,51 @@
             width: 100%;
             font-size: 16px;
             margin-top: 20px;
+            transition: background-color 0.3s ease; /* Transisi yang lebih mulus */
         }
 
         button:hover {
             background-color: #0056b3;
         }
     </style>
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
     <div class="container">
-        <h1>Pemesanan Pelayanan Kesehatan</h1>
+        <h1>Pemesanan Pelayanan Kesehatan 🩺</h1>
         
-        <form action="#" method="POST"> 
+        <form action="#" method="POST">
             
             <div class="form-group">
                 <label for="nama">Nama Lengkap:</label>
-                <input type="text" id="nama" name="nama" required>
+                <input type="text" id="nama" name="nama" required placeholder="Masukkan nama lengkap Anda">
             </div>
 
             <div class="form-group">
                 <label for="email">Email:</label>
-                <input type="email" id="email" name="email" required>
+                <input type="email" id="email" name="email" required placeholder="contoh@domain.com">
+            </div>
+            
+            <div class="form-group">
+                <label for="telepon">Nomor Telepon:</label>
+                <input type="tel" id="telepon" name="telepon" required placeholder="Contoh: 081234567890">
             </div>
 
             <div class="form-group">
                 <label for="tanggal">Tanggal Pemesanan:</label>
                 <input type="date" id="tanggal" name="tanggal" required>
             </div>
-
+            
             <div class="form-group">
-                <label>Pilih Pelayanan Kesehatan:</label>
+                <label>Pilih Pelayanan Kesehatan (Dapat lebih dari satu):</label>
                 <div class="service-list">
                     <label>
                         <input type="checkbox" name="layanan[]" value="Tekanan_Darah"> Tes Tekanan Darah
@@ -130,7 +139,8 @@
 
         </form>
     </div>
-<footer class="bg-secondary text-white py-8 mt-12">
+
+    <footer class="bg-gray-800 text-white py-8 mt-12 w-full"> 
         <div class="container mx-auto px-4 text-center">
             <p class="text-lg font-semibold mb-2">SMKS Kesehatan Yannas Husada Bangkalan</p>
             <p class="text-sm opacity-80">
