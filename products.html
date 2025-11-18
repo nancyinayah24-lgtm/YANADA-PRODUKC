@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Produk Unggulan | SMKS Kesehatan Yannas Husada</title>
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+    <nav class="bg-white shadow-lg sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center">
+                <img
+                    src="image/logo.jpg" 
+                    alt="Logo SMKS Kesehatan Yannas Husada"
+                    class="mr-3"
+                    width="50"
+                    height="50"
+                />
+                <div>
+                    <h1 class="text-lg font-bold text-gray-800">Yannas Husada | Produk Siswa</h1>
+                    <p class="text-xs text-gray-600">Inovasi Kesehatan & Herbal Bangkalan</p>
+                </div>
+            </div>
+            <div class="hidden md:flex space-x-8">
+                <a href="index.html" class="text-gray-800 hover:text-primary font-medium">Beranda</a>
+                <a href="products.html" class="text-primary font-bold border-b-2 border-primary">Produk Unggulan</a>
+                <a href="index.html#gallery" class="text-gray-800 hover:text-primary font-medium">Galeri</a>
+                <a href="index.html#contact" class="text-gray-800 hover:text-primary font-medium">Pesan & Kontak</a>
+            </div>
+            <button id="menu-toggle" class="md:hidden text-gray-800 focus:outline-none">
+                <i class="fas fa-bars text-xl"></i>
+            </button>
+        </div>
+        <div id="mobile-menu" class="md:hidden hidden px-4 pb-4">
+            <a href="index.html" class="block py-2 text-gray-800 hover:text-primary font-medium">Beranda</a>
+            <a href="products.html" class="block py-2 text-primary font-bold">Produk Unggulan</a>
+            <a href="index.html#gallery" class="block py-2 text-gray-800 hover:text-primary font-medium">Galeri</a>
+            <a href="index.html#contact" class="block py-2 text-gray-800 hover:text-primary font-medium">Pesan & Kontak</a>
+        </div>
+    </nav>
+
+    <header class="bg-primary text-white py-16">
+        <div class="container mx-auto px-4 text-center" data-aos="fade-down">
+            <h1 class="text-4xl md:text-5xl font-extrabold mb-3">Katalog Produk Unggulan</h1>
+            <p class="text-xl opacity-90">Jelajahi 6 inovasi terbaik dari siswa-siswi kompeten kami.</p>
+        </div>
+    </header>
+
+    <section id="products" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12" data-aos="fade-up">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800">
+                    <i class="fas fa-hand-holding-heart text-primary mr-2"></i> Karya Siswa Jurusan Farmasi & Kesehatan
+                </h2>
+                <div class="section-divider"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                
+                <div class="product-card" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="h-56 overflow-hidden">
+                        <img src="image/produk1.jpg" alt="Sabun Herbal Bunga Telang" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110"/>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-primary mb-2">Jasernas </h3>
+                        <p class="text-sm text-gray-600 mb-3">Jasenas (Jahe Serbuk Yannas) adalah minuman herbal yang praktis, berfungsi sebagai tonik kesehatan harian, sangat baik untuk menjaga stamina dan menghangatkan tubuh. Jasernas ini merupakan produk yang sudah memiliki izin halal, haram, dan najis, serta titik krtis bahan dari TIM ABMAS & KKN FORUM AKBAR PENGGERAK HALAL MADURA.</p>
+                        <p class="text-2xl font-extrabold text-secondary mb-4">Rp 12.000</p>
+                        <button class="btn-primary w-full py-2 rounded-lg font-semibold buy-btn" data-product="Jasernas" data-price="12.000">
+                            <i class="fab fa-whatsapp mr-2"></i> Pesan Sekarang
+                        </button>
+                    </div>
+                </div>
+
+                <div class="product-card" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="h-56 overflow-hidden">
+                        <img src="image/produk2.jpg" alt="Minyak Gosok Aromaterapi" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110"/>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-primary mb-2">Inhaler</h3>
+                        <p class="text-sm text-gray-600 mb-3">Inhaler adalah perangkat medis yang dirancang untuk mengirimkan obat langsung ke paru-paru melalui hirupan, dan manfaatnya sangat penting, terutama bagi penderita penyakit pernapasan kronis seperti asma dan Penyakit Paru Obstruktif Kronis (PPOK). Berikut manfaatnya: <br>* Meredakan Serangan Asma: Segera membuka saluran napas yang menyempit. <br>* Mengendalikan Gejala: Mengurangi peradangan kronis dan frekuensi sesak napas. <br>* Mendukung Aktivitas: Memungkinkan olahraga tanpa hambatan pernapasan..</p>
+                        <p class="text-2xl font-extrabold text-secondary mb-4">Rp 8.000</p>
+                        <button class="btn-primary w-full py-2 rounded-lg font-semibold buy-btn" data-product="Inhaler" data-price="8.000">
+                            <i class="fab fa-whatsapp mr-2"></i> Pesan Sekarang
+                        </button>
+                    </div>
+                </div>
+
+                <div class="product-card" data-aos="zoom-in" data-aos-delay="300">
+                    <div class="h-56 overflow-hidden">
+                        <img src="image/produk3.jpg" alt="Hand Sanitizer Daun Sirih" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110"/>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-primary mb-2">Sinom Tumeric Tamarind Infusa</h3>
+                        <p class="text-sm text-gray-600 mb-3">Minuman Sinom Tumeric Tamarind Infusa, atau yang dikenal luas sebagai Jamu Kunyit Asam, adalah minuman tradisional Indonesia yang kaya manfaat berkat kandungan bahan utamanya, yaitu kunyit (Curcuma longa) dan asam jawa (Tamarindus indica).</p>
+                        <p class="text-2xl font-extrabold text-secondary mb-4">Rp 6.000</p>
+                        <button class="btn-primary w-full py-2 rounded-lg font-semibold buy-btn" data-product="Sinom Tumeric Tamarind Infusa" data-price="6.000">
+                            <i class="fab fa-whatsapp mr-2"></i> Pesan Sekarang
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="product-card" data-aos="zoom-in" data-aos-delay="400">
+                    <div class="h-56 overflow-hidden">
+                        <img src="image/produk4.jpg" alt="Deodorant" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110"/>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-primary mb-2">Deodorant</h3>
+                        <p class="text-sm text-gray-600 mb-3">Deodoran tawas semprot menggunakan larutan tawas (Potassium Alum) yang dilarutkan dalam air, seringkali ditambahkan bahan alami lain (seperti ekstrak lidah buaya atau sedikit aroma minyak esensial)</p>
+                        <p class="text-2xl font-extrabold text-secondary mb-4">Rp 8.000</p>
+                        <button class="btn-primary w-full py-2 rounded-lg font-semibold buy-btn" data-product="Deodorant" data-price="8.000">
+                            <i class="fab fa-whatsapp mr-2"></i> Pesan Sekarang
+                        </button>
+                    </div>
+                </div>
+
+                <div class="product-card" data-aos="zoom-in" data-aos-delay="500">
+                    <div class="h-56 overflow-hidden">
+                        <img src="image/produk5.jpg" alt="Body Scrub Kopi Jawa" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110"/>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-primary mb-2">Hand Soap (Peach)</h3>
+                        <p class="text-sm text-gray-600 mb-3">Manfaat dari Hand Soap (Peach) (Sabun Cuci Tangan Aroma Persik) mencakup fungsi utama sabun tangan dan manfaat tambahan yang berasal dari aroma dan formulasi khususnya.</p>
+                        <p class="text-2xl font-extrabold text-secondary mb-4">Rp 15.000</p>
+                        <button class="btn-primary w-full py-2 rounded-lg font-semibold buy-btn" data-product="Hand Soap (Peach)" data-price="15.000">
+                            <i class="fab fa-whatsapp mr-2"></i> Pesan Sekarang
+                        </button>
+                    </div>
+                </div>
+
+                <div class="product-card" data-aos="zoom-in" data-aos-delay="600">
+                    <div class="h-56 overflow-hidden">
+                        <img src="image/produk6.jpg" alt="Sirup Herbal Imun Booster" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110"/>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-primary mb-2">Yanada Bar Soap</h3>
+                        <p class="text-sm text-gray-600 mb-3">Sabun batang dibuat dengan susu sebagai bahan utama yang diformulasikan untuk membantu membersihkan kulit dan melembabkan kulit sepanjang hari.</p>
+                        <p class="text-2xl font-extrabold text-secondary mb-4">Rp 5.000</p>
+                        <button class="btn-primary w-full py-2 rounded-lg font-semibold buy-btn" data-product="Yanada Bar Soap" data-price="5.000">
+                            <i class="fab fa-whatsapp mr-2"></i> Pesan Sekarang
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+             <div class="text-center mt-12" data-aos="fade-up">
+                <p class="text-lg text-gray-700">Tertarik menjadi mitra reseller? <a href="index.html#contact" class="text-primary font-bold hover:underline">Hubungi Admin Penjualan Kami!</a></p>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-secondary text-white py-8 mt-12">
+        <div class="container mx-auto px-4 text-center">
+            <p class="text-lg font-semibold mb-2">SMKS Kesehatan Yannas Husada Bangkalan</p>
+            <p class="text-sm opacity-80">
+                Inovasi Produk Kesehatan Siswa - &copy; 2025. All Rights Reserved.
+            </p>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+    <script src="scripts.js"></script>
+    <script>
+        AOS.init({
+            duration: 1000,
+            once: true,
+        });
+    </script>
+</body>
+</html>
