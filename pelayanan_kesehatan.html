@@ -5,157 +5,291 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pemesanan Pelayanan Kesehatan</title>
 
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f9;
-            margin: 0;
-            padding: 20px;
-            display: flex;
-            flex-direction: column; /* Mengubah menjadi kolom untuk menampung footer */
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-        }
-
-        .container {
-            background-color: #ffffff;
-            padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            width: 100%;
-            max-width: 600px;
-            margin-bottom: 20px; /* Tambahkan sedikit ruang di bawah container utama */
-        }
-
-        h1 {
-            color: #333;
-            text-align: center;
-            margin-bottom: 20px;
-        }
-
-        .form-group {
-            margin-bottom: 15px;
-        }
-
-        label {
-            display: block;
-            margin-bottom: 5px;
-            font-weight: bold;
-            color: #555;
-        }
-
-        input[type="text"], input[type="email"], input[type="date"], input[type="tel"], select {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            box-sizing: border-box; /* Penting agar padding tidak melebihi lebar */
-        }
-
-        .service-list label {
-            font-weight: normal;
-            display: block;
-            margin: 5px 0;
-            cursor: pointer; /* Menambahkan cursor pointer untuk elemen label yang dapat diklik */
-        }
-
-        .service-list input[type="checkbox"] {
-            margin-right: 10px;
-        }
-
-        button {
-            background-color: #007bff;
-            color: white;
-            padding: 10px 15px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            width: 100%;
-            font-size: 16px;
-            margin-top: 20px;
-            transition: background-color 0.3s ease; /* Transisi yang lebih mulus */
-        }
-
-        button:hover {
-            background-color: #0056b3;
-        }
-    </style>
-
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome untuk ikon -->
     <link
         rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     />
-    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- AOS for Scroll Animations -->
     <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet" />
-    <link rel="stylesheet" href="style.css" />
-</head>
-<body>
 
-    <div class="container">
-        <h1>Pemesanan Pelayanan Kesehatan 🩺</h1>
+    <style>
+        /* Konfigurasi Tailwind untuk menggunakan variabel warna kustom */
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'primary': 'var(--primary-color)',
+                        'secondary': 'var(--secondary-color)',
+                        'accent': 'var(--accent-color)',
+                    },
+                }
+            }
+        }
+
+        /* Variabel Warna disesuaikan untuk Kesehatan/Herbal */
+        :root {
+            --primary-color: #00796b; /* Hijau Kebiruan Khas Kesehatan */
+            --secondary-color: #004d40; /* Hijau Tua */
+            --accent-color: #4db6ac; /* Warna Aksen Muda */
+        }
+
+        body {
+            font-family: "Inter", "Segoe UI", system-ui, sans-serif;
+            background-color: #f0fdfa; /* Warna latar belakang sangat muda untuk kesan segar */
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 100vh;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* --- Formulir Styling --- */
+        .form-container {
+            background-color: #ffffff;
+            border-radius: 1.5rem; /* Lebih membulat */
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+            max-width: 550px;
+            width: 90%;
+            margin: 40px auto;
+            padding: 2.5rem;
+            border: 2px solid var(--accent-color);
+        }
+
+        .input-field {
+            width: 100%;
+            padding: 0.75rem;
+            margin-top: 0.25rem;
+            border: 1px solid #d1d5db;
+            border-radius: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .input-field:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(0, 121, 107, 0.2);
+            outline: none;
+        }
+
+        /* Styling Checkbox Custom */
+        .checkbox-label {
+            display: flex;
+            align-items: center;
+            padding: 0.75rem;
+            margin-bottom: 0.5rem;
+            background-color: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            transition: background-color 0.2s, border-color 0.2s;
+        }
         
-        <form action="#" method="POST">
-            
-            <div class="form-group">
-                <label for="nama">Nama Lengkap:</label>
-                <input type="text" id="nama" name="nama" required placeholder="Masukkan nama lengkap Anda">
-            </div>
+        .checkbox-label:hover {
+            background-color: #e0f2f1;
+            border-color: var(--primary-color);
+        }
 
-            <div class="form-group">
-                <label for="email">Email:</label>
-                <input type="email" id="email" name="email" required placeholder="contoh@domain.com">
-            </div>
-            
-            <div class="form-group">
-                <label for="telepon">Nomor Telepon:</label>
-                <input type="tel" id="telepon" name="telepon" required placeholder="Contoh: 081234567890">
-            </div>
+        .checkbox-label input[type="checkbox"] {
+            /* Sembunyikan checkbox default */
+            appearance: none;
+            -webkit-appearance: none;
+            width: 18px;
+            height: 18px;
+            border: 2px solid #94a3b8;
+            border-radius: 4px;
+            margin-right: 12px;
+            position: relative;
+            cursor: pointer;
+            transition: border-color 0.2s, background-color 0.2s;
+        }
 
-            <div class="form-group">
-                <label for="tanggal">Tanggal Pemesanan:</label>
-                <input type="date" id="tanggal" name="tanggal" required>
-            </div>
-            
-            <div class="form-group">
-                <label>Pilih Pelayanan Kesehatan (Dapat lebih dari satu):</label>
-                <div class="service-list">
-                    <label>
-                        <input type="checkbox" name="layanan[]" value="Tekanan_Darah"> Tes Tekanan Darah
-                    </label>
-                    <label>
-                        <input type="checkbox" name="layanan[]" value="Darah_Lengkap"> Tes Darah Lengkap
-                    </label>
-                    <label>
-                        <input type="checkbox" name="layanan[]" value="Bekam"> Bekam
-                    </label>
-                    <label>
-                        <input type="checkbox" name="layanan[]" value="Facial_Totok_Wajah"> Treatment Facial dan Totok Wajah
-                    </label>
+        .checkbox-label input[type="checkbox"]:checked {
+            border-color: var(--primary-color);
+            background-color: var(--primary-color);
+        }
+
+        .checkbox-label input[type="checkbox"]:checked::after {
+            content: '\f00c'; /* Ikon centang dari Font Awesome */
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            color: white;
+            font-size: 10px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        /* --- Utility & Komponen Kustom dari CSS Anda --- */
+        .product-card {
+            background-color: white;
+            border-radius: 0.75rem; 
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .bg-primary { background-color: var(--primary-color); }
+        .bg-secondary { background-color: var(--secondary-color); }
+        .text-accent { color: var(--accent-color); }
+        .text-primary { color: var(--primary-color); }
+        .text-secondary { color: var(--secondary-color); }
+        
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: white;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary:hover {
+            background-color: var(--secondary-color);
+            transform: scale(1.01);
+            box-shadow: 0 4px 10px rgba(0, 77, 64, 0.3);
+        }
+        
+        .section-divider {
+            width: 100px;
+            height: 3px;
+            background: var(--primary-color);
+            margin: 1.5rem auto;
+        }
+
+        .section-divider.bg-white {
+            background: white;
+        }
+    </style>
+</head>
+<body class="flex flex-col min-h-screen">
+
+    <main class="flex-grow flex items-center justify-center w-full">
+        <div class="form-container" data-aos="fade-up">
+            <h1 class="text-3xl font-bold text-center text-primary mb-6 flex items-center justify-center">
+                <i class="fas fa-notes-medical mr-3 text-accent"></i>
+                Formulir Pemesanan Pelayanan
+            </h1>
+            <div class="section-divider"></div>
+
+            <form id="healthForm" onsubmit="handleSubmission(event)">
+                
+                <!-- Nama Lengkap -->
+                <div class="form-group mb-4">
+                    <label for="nama" class="block text-sm font-medium text-gray-700 mb-1">Nama Lengkap:</label>
+                    <input type="text" id="nama" name="nama" required placeholder="Masukkan nama Anda" class="input-field">
                 </div>
-            </div>
 
-            <button type="submit">Kirim Pemesanan</button>
+                <!-- Email -->
+                <div class="form-group mb-4">
+                    <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email:</label>
+                    <input type="email" id="email" name="email" required placeholder="contoh@domain.com" class="input-field">
+                </div>
+                
+                <!-- Nomor Telepon -->
+                <div class="form-group mb-4">
+                    <label for="telepon" class="block text-sm font-medium text-gray-700 mb-1">Nomor Telepon:</label>
+                    <input type="tel" id="telepon" name="telepon" required placeholder="Contoh: 081234567890" class="input-field">
+                </div>
 
-        </form>
-    </div>
+                <!-- Tanggal Pemesanan -->
+                <div class="form-group mb-6">
+                    <label for="tanggal" class="block text-sm font-medium text-gray-700 mb-1">Tanggal Pemesanan:</label>
+                    <input type="date" id="tanggal" name="tanggal" required class="input-field">
+                </div>
+                
+                <!-- Pilihan Pelayanan -->
+                <div class="form-group mb-8">
+                    <p class="block text-sm font-bold text-secondary mb-3">Pilih Pelayanan Kesehatan:</p>
+                    <div class="space-y-2">
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="layanan[]" value="Tekanan_Darah"> Tes Tekanan Darah <i class="fas fa-heartbeat ml-auto text-primary"></i>
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="layanan[]" value="Darah_Lengkap"> Tes Darah Lengkap <i class="fas fa-tint ml-auto text-primary"></i>
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="layanan[]" value="Bekam"> Bekam (Cupping Therapy) <i class="fas fa-crosshairs ml-auto text-primary"></i>
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="layanan[]" value="Facial_Totok_Wajah"> Treatment Facial & Totok Wajah <i class="fas fa-spa ml-auto text-primary"></i>
+                        </label>
+                    </div>
+                </div>
 
-    <footer class="bg-gray-800 text-white py-8 mt-12 w-full"> 
-        <div class="container mx-auto px-4 text-center">
-            <p class="text-lg font-semibold mb-2">SMKS Kesehatan Yannas Husada Bangkalan</p>
-            <p class="text-sm opacity-80">
-                Inovasi Produk Kesehatan Siswa - &copy; 2025. All Rights Reserved.
+                <!-- Tombol Submit -->
+                <button type="submit" class="w-full py-3 rounded-xl font-semibold text-lg btn-primary shadow-md">
+                    <i class="fas fa-paper-plane mr-2"></i> Kirim Pemesanan
+                </button>
+
+                <!-- Feedback Message Box (Custom Alert) -->
+                <div id="messageBox" class="hidden mt-4 p-4 rounded-lg text-center font-medium" role="alert"></div>
+
+            </form>
+        </div>
+    </main>
+
+    <!-- Footer menggunakan warna secondary dari variabel CSS -->
+    <footer class="bg-secondary text-white py-6 w-full mt-auto">
+        <div class="max-w-6xl mx-auto px-4 text-center">
+            <p class="text-md font-semibold mb-1">SMKS Kesehatan Yannas Husada Bangkalan</p>
+            <p class="text-xs opacity-80">
+                Inovasi Produk Kesehatan Siswa - &copy; 2025.
             </p>
         </div>
     </footer>
 
+    <!-- JavaScript untuk AOS dan Penanganan Form -->
     <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
-    <script src="scripts.js"></script>
     <script>
         AOS.init({
             duration: 1000,
             once: true,
         });
+
+        // Custom function to handle form submission (since alerts are disallowed)
+        function handleSubmission(event) {
+            event.preventDefault(); // Mencegah refresh halaman
+            
+            const form = document.getElementById('healthForm');
+            const messageBox = document.getElementById('messageBox');
+            const formData = new FormData(form);
+            const selectedServices = formData.getAll('layanan[]');
+            
+            // Validasi sederhana: harus memilih minimal 1 layanan
+            if (selectedServices.length === 0) {
+                showMessage('Peringatan: Harap pilih minimal satu jenis Pelayanan Kesehatan.', 'bg-yellow-100 text-yellow-800 border-yellow-300');
+                return;
+            }
+
+            // Membangun pesan sukses
+            let message = `Pemesanan atas nama **${formData.get('nama')}** berhasil dikirim! Kami akan menghubungi Anda di ${formData.get('telepon')} atau ${formData.get('email')}. Layanan yang dipesan: ${selectedServices.join(', ').replace(/_/g, ' ')}.`;
+
+            showMessage(message, 'bg-green-100 text-green-800 border-green-300');
+
+            // Reset form setelah 3 detik
+            setTimeout(() => {
+                form.reset();
+                messageBox.classList.add('hidden');
+            }, 3000);
+
+            // Pada aplikasi nyata, data ini akan dikirim ke server di sini.
+            console.log("Data Pemesanan:", Object.fromEntries(formData.entries()));
+            console.log("Layanan yang dipilih:", selectedServices);
+        }
+
+        // Fungsi untuk menampilkan pesan feedback kustom
+        function showMessage(text, classes) {
+            const messageBox = document.getElementById('messageBox');
+            messageBox.innerHTML = text;
+            messageBox.className = `mt-4 p-4 border rounded-lg font-medium ${classes}`;
+            messageBox.classList.remove('hidden');
+        }
     </script>
 </body>
 </html>
