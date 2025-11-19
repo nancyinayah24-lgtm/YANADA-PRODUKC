@@ -51,6 +51,10 @@
     
 <section id="home" class="hero-slider">
     
+    <!-- SLIDER SECTION -->
+<div class="slider-container relative w-full h-[500px] overflow-hidden">
+
+    <!-- SLIDE 0 -->
     <div class="slide active" data-slide-id="0">
         <img src="image/jasernas 2.jpg" alt="Produk Unggulan Siswa Yannas Husada" class="w-full h-full object-cover" />
         <div class="slide-content">
@@ -61,7 +65,8 @@
             </div>
         </div>
     </div>
-    
+
+    <!-- SLIDE 1 -->
     <div class="slide" data-slide-id="1">
         <img src="image/hero2.jpg" alt="Siswa sedang memproduksi produk herbal" class="w-full h-full object-cover" />
         <div class="slide-content">
@@ -70,16 +75,37 @@
                 <p class="text-lg md:text-xl mb-6">Setiap produk dibuat melalui proses praktik laboratorium yang terstandarisasi.</p>
                 <a href="#contact" class="btn-primary px-6 py-3 rounded-full font-medium inline-block">Pesan Sekarang</a>
             </div>
-          <div class="slide active" data-slide-id="0">
-        <img src="image/jasernas 2.jpg" alt="Produk Unggulan Siswa Yannas Husada" class="w-full h-full object-cover" />
-        <div class="slide-content">  
         </div>
     </div>
-</section>
-        <div class="nav-dots">
-            <div class="nav-dot active" data-slide="0"></div>
-            <div class="nav-dot" data-slide="1"></div>
+
+    <!-- SLIDE 2 (SLIDE BARU) -->
+    <div class="slide" data-slide-id="2">
+        <img src="jasernas 3.jpg" alt="Kegiatan siswa membuat produk herbal" class="w-full h-full object-cover" />
+        <div class="slide-content">
+            <div class="container mx-auto px-4">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Kreativitas Tanpa Batas</h2>
+                <p class="text-lg md:text-xl mb-6">Siswa aktif berinovasi menciptakan produk kesehatan unggulan berbasis herbal.</p>
+                <a href="products.html" class="btn-primary px-6 py-3 rounded-full font-medium inline-block">Lihat Produk Unggulan</a>
+            </div>
         </div>
+    </div>
+
+</div>
+
+<!-- OPTIONAL: UPDATE SCRIPT SLIDER (jika ada) -->
+<script>
+    // Contoh script yang perlu disesuaikan
+    let currentSlide = 0;
+    const slides = document.querySelectorAll(".slide");
+    const totalSlides = slides.length; // otomatis jadi 3 sekarang
+
+    setInterval(() => {
+        slides[currentSlide].classList.remove("active");
+        currentSlide = (currentSlide + 1) % totalSlides;
+        slides[currentSlide].classList.add("active");
+    }, 4000);
+</script>
+
     </section>
 
     <section class="py-16 bg-white">
