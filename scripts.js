@@ -83,42 +83,29 @@ function handleSubmission(event) {
 
     const form = document.getElementById('healthForm');
     const formData = new FormData(form);
-    const selectedServices = formData.getAll('layanan[]');
+    const layanan = formData.getAll("layanan[]").join(", ");
 
-    if (selectedServices.length === 0) {
-        showMessage('Peringatan: Harap pilih minimal satu jenis Pelayanan Kesehatan.', 'bg-yellow-100 text-yellow-800 border-yellow-300');
-        return;
-    }
-
-    // Data yang akan dikirim ke Spreadsheet
     const data = {
-        nama: formData.get('nama'),
-        email: formData.get('email'),
-        telepon: formData.get('telepon'),
-        tanggal: formData.get('tanggal'),
-        layanan: selectedServices
+        nama: formData.get("nama"),
+        email: formData.get("email"),
+        telepon: formData.get("telepon"),
+        tanggal: formData.get("tanggal"),
+        layanan: layanan
     };
 
-    fetch("https://script.google.com/macros/s/AKfycbzFowgBuxPBTDbEmbj-OmUdYzcXxzlua8g-No3gKLZDZ_y_G36aTdc46oRHQuGMslt6/exec", {
+    fetch("https://script.google.com/macros/s/AKfycbxuC7mfcfQIevBb1DtXbuJOkfPc_Xqlji2c7t6Edu4DKS_u_0yySVEyr1hpVY0-AXX1/exec", {
         method: "POST",
-        body: JSON.stringify(data),
+        mode: "no-cors",
         headers: {
-            "Content-Type": "application/json"
-        }
-    })
-    .then(res => res.json())
-    .then(result => {
-        showMessage(
-            `Pemesanan atas nama <b>${data.nama}</b> berhasil dikirim!`,
-            'bg-green-100 text-green-800 border-green-300'
-        );
-        form.reset();
-    })
-    .catch(err => {
-        showMessage(
-            'Terjadi kesalahan, coba lagi.',
-            'bg-red-100 text-red-800 border-red-300'
-        );
+            "Content-Type": "application/x-www-form-urlencoded"
+        },
+        body: new URLSearchParams(data)
     });
-}
 
+    showMessage(
+        `Pemesanan atas nama <b>${data.nama}</b> berhasil dikirim!`,
+        'bg-green-100 text-green-800 border-green-300'
+    );
+
+    form.reset();
+}
