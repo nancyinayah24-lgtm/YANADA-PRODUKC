@@ -76,22 +76,22 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 });
-const SCRIPT_URL = https:/https:"//script.google.com/macros/s/AKfycbzuTyn8GTN4AreMOC_gdZzBVGkYMLFqiz9Ap-tsSBHecRG8iHWWuUJRdfrPv8Od6ZQD/exec";
+const SCRIPT_URL = https:/https:"https://script.google.com/macros/s/AKfycbzFowgBuxPBTDbEmbj-OmUdYzcXxzlua8g-No3gKLZDZ_y_G36aTdc46oRHQuGMslt6/exec";
 
 function handleSubmission(event) {
     event.preventDefault();
 
     const form = document.getElementById('healthForm');
-    const messageBox = document.getElementById('messageBox');
     const formData = new FormData(form);
     const selectedServices = formData.getAll('layanan[]');
 
     if (selectedServices.length === 0) {
-        showMessage('Peringatan: Harap pilih minimal satu pelayanan.', 'bg-yellow-100 text-yellow-800 border-yellow-300');
+        showMessage('Peringatan: Harap pilih minimal satu jenis Pelayanan Kesehatan.', 'bg-yellow-100 text-yellow-800 border-yellow-300');
         return;
     }
 
-    let json = {
+    // Data yang akan dikirim ke Spreadsheet
+    const data = {
         nama: formData.get('nama'),
         email: formData.get('email'),
         telepon: formData.get('telepon'),
@@ -99,23 +99,26 @@ function handleSubmission(event) {
         layanan: selectedServices
     };
 
-    fetch(SCRIPT_URL, {
+    fetch("https://script.google.com/macros/s/AKfycbzFowgBuxPBTDbEmbj-OmUdYzcXxzlua8g-No3gKLZDZ_y_G36aTdc46oRHQuGMslt6/exec", {
         method: "POST",
-        body: JSON.stringify(json),
-        headers: { "Content-Type": "application/json" }
-    })
-    .then(response => response.text())
-    .then(result => {
-        if (result === "SUCCESS") {
-            showMessage("Pemesanan berhasil terkirim!", "bg-green-100 text-green-800 border-green-300");
-            form.reset();
-        } else {
-            showMessage("Gagal mengirim data.", "bg-red-100 text-red-800 border-red-300");
+        body: JSON.stringify(data),
+        headers: {
+            "Content-Type": "application/json"
         }
     })
-    .catch(error => {
-        showMessage("Koneksi error!", "bg-red-100 text-red-800 border-red-300");
-        console.error(error);
+    .then(res => res.json())
+    .then(result => {
+        showMessage(
+            `Pemesanan atas nama <b>${data.nama}</b> berhasil dikirim!`,
+            'bg-green-100 text-green-800 border-green-300'
+        );
+        form.reset();
+    })
+    .catch(err => {
+        showMessage(
+            'Terjadi kesalahan, coba lagi.',
+            'bg-red-100 text-red-800 border-red-300'
+        );
     });
 }
 
