@@ -1,343 +1,748 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pemesanan Pelayanan Kesehatan</title>
-
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Font Awesome untuk ikon -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pelayanan Kesehatan | Produk Siswa SMKS Kesehatan Yannas Husada</title>
     <link
         rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     />
-    <!-- AOS for Scroll Animations -->
+    <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css" />
+</head>
 
+<body>
+<!DOCTYPE html>
+
+<html lang="id">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pelayanan Kesehatan | Produk Siswa SMKS Kesehatan Yannas Husada</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet" />
     <style>
-        /* Konfigurasi Tailwind untuk menggunakan variabel warna kustom */
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        'primary': 'var(--primary-color)',
-                        'secondary': 'var(--secondary-color)',
-                        'accent': 'var(--accent-color)',
-                    },
-                }
-            }
+        .service-card img {
+            margin: 0 auto 12px auto; /* margin atas bawah, center */
+            border-radius: 12px;
+            max-width: 100%;
+            height: auto;
         }
-
-        /* Variabel Warna disesuaikan untuk Kesehatan/Herbal */
-        :root {
-            --primary-color: #00796b; /* Hijau Kebiruan Khas Kesehatan */
-            --secondary-color: #004d40; /* Hijau Tua */
-            --accent-color: #4db6ac; /* Warna Aksen Muda */
-        }
-
-        body {
-            font-family: "Inter", "Segoe UI", system-ui, sans-serif;
-            background-color: #f0fdfa; /* Warna latar belakang sangat muda untuk kesan segar */
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            min-height: 100vh;
-            margin: 0;
-            padding: 0;
-        }
-
-        /* --- Formulir Styling --- */
-        .form-container {
-            background-color: #ffffff;
-            border-radius: 1.5rem; /* Lebih membulat */
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
-            max-width: 550px;
-            width: 90%;
-            margin: 40px auto;
-            padding: 2.5rem;
-            border: 2px solid var(--accent-color);
-        }
-
-        .input-field {
-            width: 100%;
-            padding: 0.75rem;
-            margin-top: 0.25rem;
-            border: 1px solid #d1d5db;
-            border-radius: 0.5rem;
-            transition: all 0.3s ease;
-        }
-
-        .input-field:focus {
-            border-color: var(--primary-color);
-            box-shadow: 0 0 0 3px rgba(0, 121, 107, 0.2);
-            outline: none;
-        }
-
-        /* Styling Checkbox Custom */
-        .checkbox-label {
-            display: flex;
-            align-items: center;
-            padding: 0.75rem;
-            margin-bottom: 0.5rem;
-            background-color: #f8fafc;
-            border: 1px solid #e2e8f0;
-            border-radius: 0.5rem;
-            cursor: pointer;
-            transition: background-color 0.2s, border-color 0.2s;
-        }
-        
-        .checkbox-label:hover {
-            background-color: #e0f2f1;
-            border-color: var(--primary-color);
-        }
-
-        .checkbox-label input[type="checkbox"] {
-            /* Sembunyikan checkbox default */
-            appearance: none;
-            -webkit-appearance: none;
-            width: 18px;
-            height: 18px;
-            border: 2px solid #94a3b8;
-            border-radius: 4px;
-            margin-right: 12px;
-            position: relative;
-            cursor: pointer;
-            transition: border-color 0.2s, background-color 0.2s;
-        }
-
-        .checkbox-label input[type="checkbox"]:checked {
-            border-color: var(--primary-color);
-            background-color: var(--primary-color);
-        }
-
-        .checkbox-label input[type="checkbox"]:checked::after {
-            content: '\f00c'; /* Ikon centang dari Font Awesome */
-            font-family: 'Font Awesome 6 Free';
-            font-weight: 900;
-            color: white;
-            font-size: 10px;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-        }
-
-        /* --- Utility & Komponen Kustom dari CSS Anda --- */
-        .product-card {
-            background-color: white;
-            border-radius: 0.75rem; 
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
-            transition: all 0.3s ease;
-        }
-
-        .product-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
-        }
-
-        .bg-primary { background-color: var(--primary-color); }
-        .bg-secondary { background-color: var(--secondary-color); }
-        .text-accent { color: var(--accent-color); }
-        .text-primary { color: var(--primary-color); }
-        .text-secondary { color: var(--secondary-color); }
-        
-        .btn-primary {
-            background-color: var(--primary-color);
-            color: white;
-            transition: all 0.3s ease;
-        }
-        
-        .btn-primary:hover {
-            background-color: var(--secondary-color);
-            transform: scale(1.01);
-            box-shadow: 0 4px 10px rgba(0, 77, 64, 0.3);
-        }
-        
-        .section-divider {
-            width: 100px;
-            height: 3px;
-            background: var(--primary-color);
-            margin: 1.5rem auto;
-        }
-
-        .section-divider.bg-white {
+        .service-card {
             background: white;
+            padding: 16px;
+            border-radius: 16px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .service-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 6px 16px rgba(0,0,0,0.12);
+        }
+        .service-title {
+            font-weight: 600;
+            margin: 8px 0 4px 0;
+            font-size: 1.125rem; /* 18px */
+        }
+        .service-desc {
+            font-size: 0.875rem;
+            color: #4b5563; /* gray-600 */
+            margin-bottom: 8px;
+        }
+        .btn-service {
+            display: inline-block;
+            background-color: #00796b;
+            color: white;
+            padding: 8px 12px;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: background-color 0.3s;
+        }
+        .btn-service:hover {
+            background-color: #004d40;
+        }
+        .cute-icon {
+            font-size: 2rem;
+            margin-bottom: 8px;
         }
     </style>
 </head>
-<body class="flex flex-col min-h-screen">
- <nav class="bg-white shadow-lg sticky top-0 z-50">
-        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
-            <div class="flex items-center">
-                <img
-                    src="image/logo.jpg" 
-                    alt="Logo SMKS Kesehatan Yannas Husada"
-                    class="mr-3"
-                    width="50"
-                    height="50"
-                />
+<body class="bg-gray-50">
+
+<!-- Navbar -->
+<nav class="bg-white shadow-lg sticky top-0 z-50">
+    <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+        <div class="flex items-center">
+            <img src="image/logo.jpg" alt="Logo SMKS Kesehatan Yannas Husada" class="mr-3 rounded-full" width="50" height="50" />
+            <div>
+                <h1 class="text-lg font-bold text-gray-800">Yannas Husada | Produk Siswa</h1>
+                <p class="text-xs text-gray-600">Inovasi Kesehatan & Herbal Bangkalan</p>
+            </div>
+        </div>
+        <div class="hidden md:flex space-x-8">
+            <a href="index.html" class="text-gray-800 hover:text-primary font-medium">Beranda</a>
+            <a href="products.html" class="text-primary font-bold border-b-2 border-primary">Produk</a>
+            <a href="pelayanan_kesehatan.html" class="block py-2 text-primary font-bold">Pelayanan Kesehatan</a>
+            <a href="index.html#gallery" class="text-gray-800 hover:text-primary font-medium">Galeri</a>
+            <a href="index.html#contact" class="text-gray-800 hover:text-primary font-medium">Pesan & Kontak</a>
+        </div>
+        <button id="menu-toggle" class="md:hidden text-gray-800 focus:outline-none">
+            <i class="fas fa-bars text-xl"></i>
+        </button>
+    </div>
+    <div id="mobile-menu" class="md:hidden hidden px-4 pb-4">
+        <a href="index.html" class="block py-2 text-gray-800 hover:text-primary font-medium">Beranda</a>
+        <a href="products.html" class="block py-2 text-primary font-bold">Produk</a>
+        <a href="pelayanan_kesehatan.html" class="block py-2 text-primary font-bold">Pelayanan Kesehatan</a>
+        <a href="index.html#gallery" class="block py-2 text-gray-800 hover:text-primary font-medium">Galeri</a>
+        <a href="index.html#contact" class="block py-2 text-gray-800 hover:text-primary font-medium">Pesan & Kontak</a>
+    </div>
+</nav>
+
+<!-- Daftar Pelayanan -->
+<section class="py-16">
+    <div class="container mx-auto px-4">
+        <h2 class="text-3xl font-bold text-center mb-12 text-primary">Daftar Pelayanan</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+            <div class="service-card text-center" data-aos="fade-up">
+                <img src="image/pelayanan/tekanan_darah.jpg" alt="Tes Tekanan Darah">
+                <div class="cute-icon">❤‍🩹</div>
+                <h3 class="service-title">Tes Tekanan Darah</h3>
+                <p class="service-desc">Pemeriksaan tekanan darah secara akurat oleh tenaga siswa terlatih.</p>
+                <a href="?layanan=Tekanan Darah#booking" class="btn-service">Pesan Sekarang</a>
+            </div>
+
+            <div class="service-card text-center" data-aos="fade-up" data-aos-delay="100">
+                <img src="image/pelayanan/tes_darah.jpg" alt="Tes Darah Lengkap">
+                <div class="cute-icon">🧪</div>
+                <h3 class="service-title">Tes Darah Lengkap</h3>
+                <p class="service-desc">Pengecekan darah lengkap untuk memantau kondisi kesehatan Anda.</p>
+                <a href="?layanan=Tes Darah Lengkap#booking" class="btn-service">Pesan Sekarang</a>
+            </div>
+
+            <div class="service-card text-center" data-aos="fade-up" data-aos-delay="200">
+                <img src="image/pelayanan/bekam.jpg" alt="Bekam">
+                <div class="cute-icon">🫧</div>
+                <h3 class="service-title">Bekam</h3>
+                <p class="service-desc">Terapi bekam untuk melancarkan peredaran darah dan relaksasi.</p>
+                <a href="?layanan=Bekam#booking" class="btn-service">Pesan Sekarang</a>
+            </div>
+
+            <div class="service-card text-center" data-aos="fade-up" data-aos-delay="300">
+                <img src="image/pelayanan/facial.jpg" alt="Facial">
+                <div class="cute-icon">🌸</div>
+                <h3 class="service-title">Treatment Facial</h3>
+                <p class="service-desc">Perawatan wajah untuk membersihkan & menyehatkan kulit.</p>
+                <a href="?layanan=Facial#booking" class="btn-service">Pesan Sekarang</a>
+            </div>
+
+            <div class="service-card text-center" data-aos="fade-up" data-aos-delay="400">
+                <img src="image/pelayanan/totok.jpg" alt="Totok Wajah">
+                <div class="cute-icon">😊</div>
+                <h3 class="service-title">Totok Wajah</h3>
+                <p class="service-desc">Totok wajah membantu relaksasi & melancarkan peredaran darah wajah.</p>
+                <a href="?layanan=Totok Wajah#booking" class="btn-service">Pesan Sekarang</a>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+<script>
+    AOS.init();
+    const menuToggle = document.getElementById('menu-toggle');
+    const mobileMenu = document.getElementById('mobile-menu');
+    menuToggle.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+    });
+</script>
+```
+
+</body>
+</html>
+
+
+
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Pemesanan Layanan Kesehatan</title>
+
+<style>
+/* ---- Vars warna (sama seperti yang kamu pakai) ---- */
+:root{
+  --primary-color: #00796b;
+  --secondary-color: #004d40;
+  --accent-color: #4db6ac;
+  --bg: #f6fbfa;
+  --card-bg: #ffffff;
+  --muted: #6b6b6b;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:"Segoe UI", system-ui, sans-serif;
+  background:var(--bg);
+  color:#0b3a36;
+  -webkit-font-smoothing:antialiased;
+}
+.container{
+  max-width:980px;
+  margin:32px auto;
+  padding:20px;
+}
+
+/* Header */
+.header{
+  display:flex;
+  align-items:center;
+  gap:16px;
+  margin-bottom:18px;
+}
+.logo{
+  width:64px;
+  height:64px;
+  border-radius:12px;
+  background:linear-gradient(135deg,var(--primary-color),var(--accent-color));
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:white;
+  font-weight:700;
+  font-size:20px;
+  box-shadow:0 6px 18px rgba(0,0,0,0.08);
+}
+h1{margin:0; font-size:20px}
+.lead{color:var(--muted); font-size:14px}
+
+/* Lay out dua kolom responsif */
+.grid{
+  display:grid;
+  grid-template-columns: 1fr 360px;
+  gap:20px;
+  align-items:start;
+}
+@media(max-width:900px){
+  .grid{grid-template-columns:1fr}
+}
+
+/* Form card */
+.card{
+  background:var(--card-bg);
+  border-radius:12px;
+  padding:18px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+}
+.section-title{
+  margin:0 0 12px 0;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+.section-title h2{
+  margin:0;
+  font-size:16px;
+  color:var(--secondary-color);
+}
+.section-divider{
+  width:72px;height:4px;background:var(--primary-color);border-radius:3px;margin-top:10px;
+}
+
+/* Form elements */
+.form-row{display:flex;gap:12px;margin-bottom:12px}
+.form-row.col{flex-direction:column}
+label{font-size:13px;color:#234; margin-bottom:6px; display:block}
+input[type="text"], input[type="tel"], input[type="email"], input[type="date"], input[type="time"], select{
+  width:100%;
+  padding:10px 12px;
+  border-radius:8px;
+  border:1px solid #e6eeec;
+  background:white;
+  font-size:14px;
+}
+.small{font-size:13px;color:var(--muted)}
+
+.services{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:10px;
+  margin-bottom:12px;
+}
+.service{
+  border:1px solid #e7efee;
+  padding:12px;
+  border-radius:10px;
+  display:flex;
+  flex-direction:column;
+  gap:6px;
+  background:linear-gradient(180deg, rgba(255,255,255,0.9), rgba(250,255,253,0.9));
+}
+.service .title{font-weight:600; color:var(--primary-color)}
+.service .price{font-weight:700; color:var(--secondary-color)}
+.service input[type="number"]{
+  width:70px;
+}
+
+/* Summary (kanan) */
+.summary .line{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px dashed #eef6f5}
+.summary .total{font-size:18px;font-weight:700;color:var(--secondary-color)}
+.note{font-size:13px;color:var(--muted); margin-top:10px}
+
+/* Buttons */
+.btn{
+  display:inline-block;
+  padding:10px 14px;
+  border-radius:10px;
+  border:none;
+  cursor:pointer;
+  font-weight:600;
+  text-decoration:none;
+}
+.btn-primary{
+  background:var(--primary-color);
+  color:#fff;
+}
+.btn-outline{
+  background:transparent;
+  border:1px solid var(--primary-color);
+  color:var(--primary-color);
+}
+
+/* Modal simple */
+.modal-backdrop{
+  position:fixed; inset:0; background:rgba(0,0,0,0.45); display:none; align-items:center; justify-content:center; z-index:50;
+}
+.modal{
+  background:white; padding:18px; width:520px; max-width:92%; border-radius:12px; box-shadow:0 20px 40px rgba(0,0,0,0.25);
+}
+.modal h3{margin-top:0}
+.modal pre{background:#f3fbfa;padding:12px;border-radius:8px;overflow:auto; max-height:280px}
+
+/* small helpers */
+.row{display:flex;gap:10px;align-items:center}
+.right{margin-left:auto}
+.error{color:#bf1e2e;font-size:13px;margin-top:6px}
+.success{color:green;font-weight:700}
+
+/* footer */
+.footer{margin-top:18px;text-align:center;color:var(--muted);font-size:13px}
+</style>
+</head>
+<body>
+
+<div class="container mx-auto px-4 py-16">
+  <div class="header">
+    <div class="logo">HK</div>
+    <div>
+      <h1>Pemesanan Layanan — Pelayanan Kesehatan</h1>
+      <div class="lead">Pilih layanan, isi data pasien, pilih jadwal, lalu konfirmasi pemesanan.</div>
+    </div>
+  </div>
+
+  <div class="grid">
+    <!-- FORM KIRI -->
+    <div class="card">
+      <div class="section-title">
+        <h2>Isi Data & Pilih Layanan</h2>
+      </div>
+      <div class="section-divider"></div>
+
+      <!-- Data pasien -->
+      <form id="orderForm" autocomplete="off">
+        <div style="margin-top:12px;">
+          <label for="nama">Nama Lengkap</label>
+          <input id="nama" name="nama" type="text" placeholder="Nama pasien / pemesan" required>
+        </div>
+
+        <div class="form-row" style="margin-top:8px;">
+          <div style="flex:1">
+            <label for="telp">Nomor Telepon</label>
+            <input id="telp" name="telp" type="tel" placeholder="0812xxxxxxx" required>
+          </div>
+          <div style="width:48%">
+            <label for="email">Email (opsional)</label>
+            <input id="email" name="email" type="email" placeholder="email@contoh.com">
+          </div>
+        </div>
+
+        <div class="form-row col">
+          <div>
+            <label for="tanggal">Tanggal Pemeriksaan</label>
+            <input id="tanggal" name="tanggal" type="date" required>
+          </div>
+          <div style="margin-top:8px">
+            <label for="waktu">Waktu (perkiraan)</label>
+            <input id="waktu" name="waktu" type="time" required>
+          </div>
+        </div>
+
+        <hr style="border:none;height:1px;background:#eef7f6;margin:12px 0;border-radius:2px">
+
+        <div>
+          <label>Pilih Layanan</label>
+          <div class="services" id="servicesList">
+            <!-- Service 1 -->
+            <div class="service">
+              <div class="row">
                 <div>
-                    <h1 class="text-lg font-bold text-gray-800">Yannas Husada | Produk Siswa</h1>
-                    <p class="text-xs text-gray-600">Inovasi Kesehatan & Herbal Bangkalan</p>
+                  <input id="s1" data-price="40000" type="checkbox" name="layanan" value="Tes Tekanan Darah">
                 </div>
+                <div style="flex:1">
+                  <div class="title">Tes Tekanan Darah</div>
+                  <div class="small">Pengecekan tekanan darah & konsultasi singkat</div>
+                </div>
+                <div class="price" style="text-align:right">
+                  <div class="price">Rp 40.000</div>
+                </div>
+              </div>
             </div>
-            <div class="hidden md:flex space-x-8">
-                <a href="index.html" class="text-gray-800 hover:text-primary font-medium">Beranda</a>
-                <a href="products.html" class="text-gray-800 hover:text-primary font-medium">Produk Unggulan</a>
-                <a href="pelayanan_kesehatan.html" class="text-gray-800 hover:text-primary font-medium">Pelayanan Kesehatan </a>
-                <a href="index.html#gallery" class="text-gray-800 hover:text-primary font-medium">Galeri</a>
-                <a href="index.html#contact" class="text-gray-800 hover:text-primary font-medium">Pesan & Kontak</a>
+
+            <!-- Service 2 -->
+            <div class="service">
+              <div class="row">
+                <div>
+                  <input id="s2" data-price="250000" type="checkbox" name="layanan" value="Tes Darah Lengkap">
+                </div>
+                <div style="flex:1">
+                  <div class="title">Tes Darah Lengkap</div>
+                  <div class="small">Panel lengkap: Hb, LDL, HDL, gula, dsb.</div>
+                </div>
+                <div class="price" style="text-align:right">
+                  <div class="price">Rp 250.000</div>
+                </div>
+              </div>
+              <div style="margin-top:8px">
+                <label class="small">Catatan (opsional)</label>
+                <input type="text" id="note_s2" placeholder="Contoh: puasa 8 jam sebelum pemeriksaan">
+              </div>
             </div>
-            <button id="menu-toggle" class="md:hidden text-gray-800 focus:outline-none">
-                <i class="fas fa-bars text-xl"></i>
-            </button>
+
+            <!-- Service 3 -->
+            <div class="service">
+              <div class="row">
+                <div>
+                  <input id="s3" data-price="150000" type="checkbox" name="layanan" value="Bekam">
+                </div>
+                <div style="flex:1">
+                  <div class="title">Bekam</div>
+                  <div class="small">Terapi bekam tradisional oleh terapis berpengalaman.</div>
+                </div>
+                <div class="price" style="text-align:right">
+                  <div class="price">Rp 150.000</div>
+                </div>
+              </div>
+              <div style="margin-top:8px" class="small">Pilih jumlah sesi:
+                <input id="qty_bekam" type="number" min="1" value="1" style="margin-left:8px;width:68px">
+              </div>
+            </div>
+
+            <!-- Service 4 -->
+            <div class="service">
+              <div class="row">
+                <div>
+                  <input id="s4" data-price="200000" type="checkbox" name="layanan" value="Treatment Facial dan Totok Wajah">
+                </div>
+                <div style="flex:1">
+                  <div class="title">Treatment Facial & Totok Wajah</div>
+                  <div class="small">Perawatan kulit + pijat totok untuk relaksasi & peremajaan.</div>
+                </div>
+                <div class="price" style="text-align:right">
+                  <div class="price">Rp 200.000</div>
+                </div>
+              </div>
+              <div style="margin-top:8px" class="small">Pilih durasi:
+                <select id="durasi_facial" style="margin-left:8px">
+                  <option value="1" selected>60 menit</option>
+                  <option value="1.5">90 menit (+Rp 75.000)</option>
+                </select>
+              </div>
+            </div>
+          </div>
         </div>
-        <div id="mobile-menu" class="md:hidden hidden px-4 pb-4">
-            <a href="index.html" class="block py-2 text-gray-800 hover:text-primary font-medium">Beranda</a>
-            <a href="products.html" class="block py-2 text-gray-800 hover:text-primary font-medium">Produk Unggulan</a>
-            <a href="pelayanan_kesehatan.html" class="text-gray-800 hover:text-primary font-medium">Pelayanan Kesehatan </a>
-            <a href="index.html#gallery" class="block py-2 text-gray-800 hover:text-primary font-medium">Galeri</a>
-            <a href="index.html#contact" class="block py-2 text-gray-800 hover:text-primary font-medium">Pesan & Kontak</a>
+
+        <div style="margin-top:14px; display:flex; gap:10px; align-items:center;">
+          <button class="btn btn-primary" type="button" id="btnPreview">Lihat Ringkasan & Konfirmasi</button>
+          <button class="btn btn-outline" type="reset">Reset</button>
+          <div class="right small" style="margin-left:auto">Harga dapat berubah. Semua transaksi akan dikonfirmasi via telepon.</div>
         </div>
-    </nav>
-    <main class="flex-grow flex items-center justify-center w-full">
-        <div class="form-container" data-aos="fade-up">
-            <h1 class="text-3xl font-bold text-center text-primary mb-6 flex items-center justify-center">
-                <i class="fas fa-notes-medical mr-3 text-accent"></i>
-                Formulir Pemesanan Pelayanan
-            </h1>
-            <div class="section-divider"></div>
 
-            <form id="healthForm" onsubmit="handleSubmission(event)">
-                
-                <!-- Nama Lengkap -->
-                <div class="form-group mb-4">
-                    <label for="nama" class="block text-sm font-medium text-gray-700 mb-1">Nama Lengkap:</label>
-                    <input type="text" id="nama" name="nama" required placeholder="Masukkan nama Anda" class="input-field">
-                </div>
+        <div id="formError" class="error" style="display:none"></div>
+      </form>
+    </div>
 
-                <!-- Email -->
-                <div class="form-group mb-4">
-                    <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email:</label>
-                    <input type="email" id="email" name="email" required placeholder="contoh@domain.com" class="input-field">
-                </div>
-                
-                <!-- Nomor Telepon -->
-                <div class="form-group mb-4">
-                    <label for="telepon" class="block text-sm font-medium text-gray-700 mb-1">Nomor Telepon:</label>
-                    <input type="tel" id="telepon" name="telepon" required placeholder="Contoh: 081234567890" class="input-field">
-                </div>
+    <!-- SUMMARY KANAN -->
+    <aside class="card summary">
+      <div class="section-title">
+        <h2>Ringkasan Pesanan</h2>
+      </div>
+      <div class="section-divider"></div>
 
-                <!-- Tanggal Pemesanan -->
-                <div class="form-group mb-6">
-                    <label for="tanggal" class="block text-sm font-medium text-gray-700 mb-1">Tanggal Pemesanan:</label>
-                    <input type="date" id="tanggal" name="tanggal" required class="input-field">
-                </div>
-                
-                <!-- Pilihan Pelayanan -->
-                <div class="form-group mb-8">
-                    <p class="block text-sm font-bold text-secondary mb-3">Pilih Pelayanan Kesehatan:</p>
-                    <div class="space-y-2">
-                        <label class="checkbox-label">
-                            <input type="checkbox" name="layanan[]" value="Tekanan_Darah"> Tes Tekanan Darah <i class="fas fa-heartbeat ml-auto text-primary"></i>
-                        </label>
-                        <label class="checkbox-label">
-                            <input type="checkbox" name="layanan[]" value="Darah_Lengkap"> Tes Darah Lengkap <i class="fas fa-tint ml-auto text-primary"></i>
-                        </label>
-                        <label class="checkbox-label">
-                            <input type="checkbox" name="layanan[]" value="Bekam"> Bekam (Cupping Therapy) <i class="fas fa-crosshairs ml-auto text-primary"></i>
-                        </label>
-                        <label class="checkbox-label">
-                            <input type="checkbox" name="layanan[]" value="Facial_Totok_Wajah"> Treatment Facial & Totok Wajah <i class="fas fa-spa ml-auto text-primary"></i>
-                        </label>
-                    </div>
-                </div>
+      <div style="margin-top:12px">
+        <div class="line"><div class="small">Nama</div><div id="summName" class="small">-</div></div>
+        <div class="line"><div class="small">Tanggal & Waktu</div><div id="summDate" class="small">-</div></div>
+        <div class="line"><div class="small">Layanan</div><div id="summServices" class="small">Belum dipilih</div></div>
+        <div class="line"><div class="small">Subtotal</div><div id="summSubtotal" class="small">Rp 0</div></div>
+        <div class="line"><div class="small">Biaya Tambahan</div><div id="summExtra" class="small">Rp 0</div></div>
+        <div class="line total"><div class="small">Total</div><div id="summTotal">Rp 0</div></div>
 
-                <!-- Tombol Submit -->
-                <button type="submit" class="w-full py-3 rounded-xl font-semibold text-lg btn-primary shadow-md">
-                    <i class="fas fa-paper-plane mr-2"></i> Kirim Pemesanan
-                </button>
+        <div class="note">Setelah klik konfirmasi, Anda akan melihat detail pemesanan dan nomor referensi. Sistem ini hanya simulasi — untuk pemesanan nyata, integrasikan ke backend atau hubungi nomor kami.</div>
 
-                <!-- Feedback Message Box (Custom Alert) -->
-                <div id="messageBox" class="hidden mt-4 p-4 rounded-lg text-center font-medium" role="alert"></div>
+        <div style="margin-top:12px; display:flex; gap:8px;">
+          <button id="btnConfirm" class="btn btn-primary" style="width:100%;">Konfirmasi & Dapatkan Nomor</button>
+            <button onclick="downloadPDF()" class="btn btn-primary w-full mt-4">Download Bukti Pemesanan</button>
 
-            </form>
+<script>
+function downloadPDF() {
+    window.print(); 
+    // sementara print dijadikan download PDF (di HP & laptop muncul opsi Save as PDF)
+}
+</script>
         </div>
-    </main>
 
-    <!-- Footer menggunakan warna secondary dari variabel CSS -->
-    <footer class="bg-secondary text-white py-6 w-full mt-auto">
-        <div class="max-w-6xl mx-auto px-4 text-center">
-            <p class="text-md font-semibold mb-1">SMKS Kesehatan Yannas Husada Bangkalan</p>
-            <p class="text-xs opacity-80">
-                Inovasi Produk Kesehatan Siswa - &copy; 2025
+        <div id="confirmMessage" style="margin-top:10px;"></div>
+      </div>
+    </aside>
+  </div>
+
+  <div class="footer">© <span id="year"></span> Pelayanan Kesehatan — Semua hak dilindungi.</div>
+</div>
+
+<!-- Modal Ringkasan -->
+<div class="modal-backdrop" id="modal">
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <h3 id="modalTitle">Ringkasan Pesanan</h3>
+    <pre id="modalText">...</pre>
+    <div style="display:flex;gap:10px; margin-top:12px; justify-content:flex-end;">
+      <button class="btn btn-outline" id="modalClose">Tutup</button>
+      <button class="btn btn-primary" id="modalProceed">Lanjutkan & Simpan</button>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ===== Helper: format rupiah ===== */
+function formatRupiah(n){
+  n = Number(n) || 0;
+  return 'Rp ' + n.toLocaleString('id-ID');
+}
+
+/* ===== Data & referensi ===== */
+const servicesMeta = [
+  {id:'s1', name:'Tes Tekanan Darah', price:40000},
+  {id:'s2', name:'Tes Darah Lengkap', price:250000},
+  {id:'s3', name:'Bekam', price:150000},
+  {id:'s4', name:'Treatment Facial dan Totok Wajah', price:200000},
+];
+
+/* ===== Elements ===== */
+const form = document.getElementById('orderForm');
+const btnPreview = document.getElementById('btnPreview');
+const btnConfirm = document.getElementById('btnConfirm');
+const btnPrint = document.getElementById('btnPrint');
+
+const summName = document.getElementById('summName');
+const summDate = document.getElementById('summDate');
+const summServices = document.getElementById('summServices');
+const summSubtotal = document.getElementById('summSubtotal');
+const summExtra = document.getElementById('summExtra');
+const summTotal = document.getElementById('summTotal');
+const formError = document.getElementById('formError');
+
+const modal = document.getElementById('modal');
+const modalText = document.getElementById('modalText');
+const modalClose = document.getElementById('modalClose');
+const modalProceed = document.getElementById('modalProceed');
+const confirmMessage = document.getElementById('confirmMessage');
+
+document.getElementById('year').textContent = new Date().getFullYear();
+
+/* ===== Kalkulasi pesanan ===== */
+function gatherOrderData(){
+  const nama = document.getElementById('nama').value.trim();
+  const telp = document.getElementById('telp').value.trim();
+  const email = document.getElementById('email').value.trim();
+  const tanggal = document.getElementById('tanggal').value;
+  const waktu = document.getElementById('waktu').value;
+
+  // layanan terpilih
+  const chosen = [];
+  let subtotal = 0;
+  // S1
+  if(document.getElementById('s1').checked){
+    chosen.push({id:'s1', name:'Tes Tekanan Darah', price:40000, qty:1});
+    subtotal += 40000;
+  }
+  if(document.getElementById('s2').checked){
+    const note = document.getElementById('note_s2').value.trim();
+    chosen.push({id:'s2', name:'Tes Darah Lengkap', price:250000, qty:1, note:note});
+    subtotal += 250000;
+  }
+  if(document.getElementById('s3').checked){
+    const qty = Math.max(1, Number(document.getElementById('qty_bekam').value) || 1);
+    chosen.push({id:'s3', name:'Bekam', price:150000, qty:qty});
+    subtotal += 150000 * qty;
+  }
+  if(document.getElementById('s4').checked){
+    const dur = Number(document.getElementById('durasi_facial').value) || 1;
+    // jika 1.5 (90 menit) ada extra 75k
+    let extra = 0;
+    if(dur > 1) extra = 75000;
+    chosen.push({id:'s4', name:'Treatment Facial dan Totok Wajah', price:200000+extra, qty:1, base:200000, durasi:dur});
+    subtotal += (200000 + extra);
+  }
+
+  return {nama,telp,email,tanggal,waktu,chosen,subtotal};
+}
+
+/* ===== Update ringkasan di sidebar ===== */
+function updateSummary(){
+  const data = gatherOrderData();
+  summName.textContent = data.nama || '-';
+  summDate.textContent = (data.tanggal? data.tanggal : '-') + ' ' + (data.waktu? data.waktu : '');
+  if(data.chosen.length === 0){
+    summServices.textContent = 'Belum dipilih';
+  }else{
+    summServices.innerHTML = data.chosen.map(s => {
+      let q = s.qty && s.qty>1 ? ' x'+s.qty : '';
+      if(s.note) q += ' • ' + s.note;
+      if(s.durasi && s.durasi>1) q += ' • ' + (s.durasi*60) + ' menit';
+      return ${s.name}${q};
+    }).join('<br>');
+  }
+  summSubtotal.textContent = formatRupiah(data.subtotal);
+  // contoh biaya tambahan (misal biaya layanan khusus) - untuk saat ini 0
+  const extra = 0;
+  summExtra.textContent = formatRupiah(extra);
+  summTotal.textContent = formatRupiah(data.subtotal + extra);
+}
+
+/* ===== Validasi sederhana ===== */
+function validateBeforePreview(){
+  formError.style.display = 'none';
+  const data = gatherOrderData();
+  if(!data.nama) { showError('Nama harus diisi.'); return false; }
+  if(!data.telp) { showError('Nomor telepon harus diisi.'); return false; }
+  if(!data.tanggal) { showError('Tanggal pemeriksaan harus dipilih.'); return false; }
+  if(!data.waktu) { showError('Waktu pemeriksaan harus dipilih.'); return false; }
+  if(data.chosen.length === 0) { showError('Anda harus memilih minimal 1 layanan.'); return false; }
+  // contoh validasi: jika Tes Darah Lengkap pilih tanggal di pagi (kami sarankan)
+  return true;
+}
+function showError(msg){
+  formError.textContent = msg;
+  formError.style.display = 'block';
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+
+/* ===== Preview modal ===== */
+btnPreview.addEventListener('click', ()=>{
+  if(!validateBeforePreview()) return;
+  updateSummary();
+  const data = gatherOrderData();
+  // buat teks ringkasan
+  const lines = [];
+  lines.push('Nama: ' + data.nama);
+  lines.push('Telp: ' + data.telp);
+  if(data.email) lines.push('Email: ' + data.email);
+  lines.push('Tanggal: ' + data.tanggal);
+  lines.push('Waktu: ' + data.waktu);
+  lines.push('');
+  lines.push('Layanan:');
+  data.chosen.forEach(s=>{
+    const qty = s.qty && s.qty>1 ? ' x'+s.qty : '';
+    const dur = s.durasi ? (' • durasi: '+(s.durasi*60)+' menit') : '';
+    const note = s.note ? (' • note: '+ s.note) : '';
+    lines.push(' - ' + s.name + qty + dur + note + ' — ' + formatRupiah((s.price||0) * (s.qty||1)));
+  });
+  lines.push('');
+  lines.push('Subtotal: ' + formatRupiah(data.subtotal));
+  lines.push('Total: ' + formatRupiah(data.subtotal)); // extra=0
+  lines.push('');
+  lines.push('Catatan: Setelah konfirmasi, staf kami akan menghubungi Anda untuk verifikasi dan pembayaran.');
+  modalText.textContent = lines.join('\\n');
+  modal.style.display = 'flex';
+});
+
+/* modal control */
+modalClose.addEventListener('click', ()=> modal.style.display = 'none');
+modal.addEventListener('click', (e)=>{ if(e.target === modal) modal.style.display='none' });
+
+/* modal proceed -> simulasi simpan & konfirmasi */
+modalProceed.addEventListener('click', ()=>{
+  modal.style.display = 'none';
+  const data = gatherOrderData();
+  // buat nomor referensi sederhana
+  const ref = 'HK' + Date.now().toString().slice(-8);
+  // Simulasi "kirim" — di aplikasi nyata, di sini kamu akan fetch() ke API
+  confirmMessage.innerHTML = '<div class="success">Pesanan disimpan. Nomor Referensi: <strong>' + ref + '</strong></div>';
+  // tampilkan ringkasan pada sidebar
+  summName.textContent = data.nama;
+  summDate.textContent = (data.tanggal? data.tanggal : '-') + ' ' + (data.waktu? data.waktu : '');
+  // simpan ke localStorage untuk demo (opsional)
+  try{
+    const orders = JSON.parse(localStorage.getItem('hk_orders')||'[]');
+    orders.push({ref, created: new Date().toISOString(), order:data});
+    localStorage.setItem('hk_orders', JSON.stringify(orders));
+  }catch(e){}
+  // scroll ke konfirmasi
+  confirmMessage.scrollIntoView({behavior:'smooth'});
+});
+
+/* Confirm button di sidebar langsung melakukan preview + simpan */
+btnConfirm.addEventListener('click', ()=>{
+  if(!validateBeforePreview()) return;
+  // open modal preview terlebih dahulu
+  btnPreview.click();
+});
+
+/* print ringkasan: cetak konten ringkasan sederhana */
+btnPrint.addEventListener('click', ()=>{
+  updateSummary();
+  const content = `
+    <html><head><title>Ringkasan Pemesanan</title>
+    <style>body{font-family:Arial;padding:20px;color:#123}.line{margin-bottom:8px}</style>
+    </head><body>
+    <h2>Ringkasan Pemesanan</h2>
+    <div class="line"><strong>Nama:</strong> ${document.getElementById('nama').value || '-'}</div>
+    <div class="line"><strong>Telp:</strong> ${document.getElementById('telp').value || '-'}</div>
+    <div class="line"><strong>Tanggal & Waktu:</strong> ${document.getElementById('tanggal').value || '-'} ${document.getElementById('waktu').value || ''}</div>
+    <div><strong>Layanan:</strong><br>${summServices.innerHTML}</div>
+    <div style="margin-top:12px"><strong>Total:</strong> ${summTotal.textContent}</div>
+    <hr>
+    <div style="font-size:12px;color:#666">Dicetak: ${new Date().toLocaleString()}</div>
+    </body></html>
+  `;
+  const w = window.open('', '_blank');
+  w.document.write(content);
+  w.document.close();
+  w.focus();
+  w.print();
+});
+
+/* update summary saat input berubah */
+['nama','telp','email','tanggal','waktu','qty_bekam','durasi_facial','s1','s2','s3','s4','note_s2'].forEach(id=>{
+  const el = document.getElementById(id);
+  if(!el) return;
+  el.addEventListener('change', updateSummary);
+  el.addEventListener('input', updateSummary);
+});
+updateSummary(); // initial
+</script>
+
+    
+      <footer class="bg-secondary text-white py-8 mt-12">
+        <div class="container mx-auto px-4 text-center">
+            <p class="text-lg font-semibold mb-2">SMKS Kesehatan Yannas Husada Bangkalan</p>
+            <p class="text-sm opacity-80">
+                Inovasi Produk Kesehatan Siswa - &copy; 2025. All Rights Reserved.
             </p>
         </div>
     </footer>
 
-    <!-- JavaScript untuk AOS dan Penanganan Form -->
-    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
-    <script>
-        AOS.init({
-            duration: 1000,
-            once: true,
-        });
-
-        // Custom function to handle form submission (since alerts are disallowed)
-        function handleSubmission(event) {
-    event.preventDefault();
-
-    const form = document.getElementById('healthForm');
-    const formData = new FormData(form);
-    const selectedServices = formData.getAll('layanan[]');
-
-    if (selectedServices.length === 0) {
-        showMessage('Peringatan: Harap pilih minimal satu jenis Pelayanan Kesehatan.', 'bg-yellow-100 text-yellow-800 border-yellow-300');
-        return;
-    }
-
-    // Data yang akan dikirim ke Spreadsheet
-    const data = {
-        nama: formData.get('nama'),
-        email: formData.get('email'),
-        telepon: formData.get('telepon'),
-        tanggal: formData.get('tanggal'),
-        layanan: selectedServices
-    };
-
-    fetch("https://script.google.com/macros/s/AKfycbwIbqpcJ0-Yzs0yUdWuhykdfwFXPnUwkz4A-dXO_etNI1r-8nUsKjdg5XgPQ8dKjX6H/exec", {
-        method: "POST",
-        body: JSON.stringify(data),
-        headers: {
-            "Content-Type": "application/json"
-        }
-    })
-    .then(res => res.json())
-    .then(result => {
-        showMessage(
-            `Pemesanan atas nama <b>${data.nama}</b> berhasil dikirim!`,
-            'bg-green-100 text-green-800 border-green-300'
-        );
-        form.reset();
-    })
-    .catch(err => {
-        showMessage(
-            'Terjadi kesalahan, coba lagi.',
-            'bg-red-100 text-red-800 border-red-300'
-        );
-    });
-}
-
-
-        // Fungsi untuk menampilkan pesan feedback kustom
-        function showMessage(text, classes) {
-            const messageBox = document.getElementById('messageBox');
-            messageBox.innerHTML = text;
-            messageBox.className = `mt-4 p-4 border rounded-lg font-medium ${classes}`;
-            messageBox.classList.remove('hidden');
-        }
-    </script>
 </body>
 </html>
